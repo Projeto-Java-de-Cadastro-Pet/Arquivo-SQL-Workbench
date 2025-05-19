@@ -1,0 +1,40 @@
+CREATE DATABASE cadastro_pet;
+USE cadastro_pet;
+
+CREATE TABLE dono (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    telefone VARCHAR(20),
+    endereco VARCHAR(150)
+);
+
+CREATE TABLE pet (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    idade INT,
+    especie VARCHAR(50),
+    raca VARCHAR(100),
+    dono_id INT,
+    nivel_energia INT,
+    brinquedo_favorito VARCHAR(100),
+    gosta_de_caixa BOOLEAN,
+    sonecas_por_dia INT,
+    FOREIGN KEY (dono_id) REFERENCES dono(id)
+);
+
+CREATE TABLE veterinario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    crm VARCHAR(20),
+    especialidade VARCHAR(100)
+);
+
+CREATE TABLE consulta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE,
+    descricao TEXT,
+    pet_id INT,
+    veterinario_id INT,
+    FOREIGN KEY (pet_id) REFERENCES pet(id),
+    FOREIGN KEY (veterinario_id) REFERENCES veterinario(id)
+);
